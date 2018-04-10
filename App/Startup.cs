@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using App.Domain.Models;
 using App.Domain.Services;
+using App.Domain.Infrastructure.Settings;
 
 namespace App
 {
@@ -25,7 +26,7 @@ namespace App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //services.Configure<APISettings.People>(Configuration.GetSection("APISettings.PeopleURI"));
+            services.Configure<APISettings.People>(Configuration.GetSection("APISettings"));
             services.AddOptions();
             services.AddScoped<IPeopleService, PeopleService>();
         }
@@ -39,7 +40,7 @@ namespace App
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseStaticFiles();

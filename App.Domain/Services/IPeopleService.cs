@@ -16,6 +16,6 @@ namespace App.Domain.Services
         /// See <see cref="App.Domain.Models.People.Person"/>
         /// </summary>
         /// <returns></returns>
-        Task<ICollection<People.Person>> GetPeopleAsync();
+        Task<ICollection<People.Person>> GetPeopleAsync(string baseURI);
     }
 }

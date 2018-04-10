@@ -10,7 +10,6 @@ namespace App.Domain.Infrastructure.Exceptions
         public PeopleFetchException() { }
         public PeopleFetchException(string message) : base(message) { }
         public PeopleFetchException(string message, Exception inner) : base(message, inner) { }
-
     }
 }
 

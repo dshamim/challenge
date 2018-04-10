@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var prevGender = "";
+    bool firstRun = true;
+    var endUL = "</ul>";
+    var beginUL = "<ul>";
+}
+@model App.Models.CatViewModel
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Cats List</h2>
+        <br/>
+        @foreach(var cat in Model.Cats){             
+            @if(prevGender != cat.OwnerGender){
+                {
+                    prevGender = cat.OwnerGender;
+                    firstRun = false;
+                }
+                @if(!firstRun){ @Html.Raw("</ul>"); }                
+                <h3>Owner Gender: @cat.OwnerGender</h3>                
+                @Html.Raw("<ul>");
+            }
+            <li>@cat.Name</li>
+        }        
+    </div>   
+</div>

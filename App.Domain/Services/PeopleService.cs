@@ -11,8 +11,7 @@ namespace App.Domain.Services
 {  
     public class PeopleService : IPeopleService
     {
-        private readonly DataContractJsonSerializer _serializer;
-        private readonly string _requestURI;
+        private readonly DataContractJsonSerializer _serializer;        
         
         // public PeopleService(string requestURI){
         //     _serializer = new DataContractJsonSerializer(typeof(ICollection<People.Person>));
@@ -20,15 +19,14 @@ namespace App.Domain.Services
         // } 
 
          public PeopleService(){
-            _serializer = new DataContractJsonSerializer(typeof(ICollection<People.Person>));
-            _requestURI = "http://agl-developer-test.azurewebsites.net/people.json";
+            _serializer = new DataContractJsonSerializer(typeof(ICollection<People.Person>));            
         } 
 
-        public async Task<ICollection<People.Person>> GetPeopleAsync()
+        public async Task<ICollection<People.Person>> GetPeopleAsync(string baseURI)
         {
             // get data
             HttpClient client = new HttpClient();
-            var result = await client.GetAsync(_requestURI);
+            var result = await client.GetAsync(baseURI);
             if(result.StatusCode != HttpStatusCode.OK){
                 var ex = new PeopleFetchException($"Fetch failed with status code {result.StatusCode}");                
             }
